@@ -1,0 +1,49 @@
+
+import csv
+app_list = [12,3,4,5,6]
+
+
+# open the file in the write mode
+f = open('sample.csv', 'a')
+
+# create the csv writer
+writer = csv.writer(f)
+
+# write a row to the csv file
+writer.writerow(app_list)
+
+# close the file
+f.close()
+
+
+#this method should be done on a clean empty csv file
+def data_file_structure(y):
+    # open the file in the write mode
+    f = open('data.csv', 'a')
+
+    # create the csv writer
+    writer = csv.writer(f)
+
+    # write a row to the csv file
+    writer.writerow(y)
+
+    # close the file
+    f.close()
+
+
+#this method is to add
+def data_append(x):
+    # open the file in the write mode
+    f = open('data.csv', 'a')
+
+    # create the csv writer
+    writer = csv.writer(f)
+
+    # write a row to the csv file
+    writer.writerow(x)
+
+    # close the file
+    f.close()
+
+#data_file_structure(["Name","Surname","Age","University"])
+data_append(["Shaikat", "Majumder", 23, "Brac University"])
