@@ -1,0 +1,57 @@
+import pandas as pd
+import csv
+import numpy as np
+from sklearn.preprocessing import MinMaxScaler
+from sklearn import preprocessing
+
+
+
+df = pd.read_csv("Melanoma TFRecords 256x256.csv")
+
+#understanding the dataset
+print(df.describe())
+#print(df.columns)
+
+#this is for dropping the NaN values
+df.dropna()
+
+#dropping the target column successfully
+df = df.drop(labels='target', axis=1)
+
+#this to check if the colum has been successfully dropped
+print(df.columns)
+
+
+#no null values are present so far here in this step
+df.info()
+
+
+#finding out the unique values in the benign_malignant column
+uniqueValues = df['benign_malignant'].unique()
+print(uniqueValues)
+
+
+
+# converting type of columns to 'category'
+df['benign_malignant'] = df['benign_malignant'].astype('category')
+
+# Assigning numerical values and storing in another column
+df['benign_malignant'] = df['benign_malignant'].cat.codes
+
+print(df)
+
+#this is to chekc if the benign_malignant categorical val has been converted to numberical
+uniqueValues = df['benign_malignant'].unique()
+print(uniqueValues)
+
+
+
+scaler = MinMaxScaler()
+#alternative code for scaling
+df['tfrecord'] = scaler.fit_transform(df['tfrecord'].values.reshape(0, 1))
+
+
+
+
+
+
